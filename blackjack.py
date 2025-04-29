@@ -1,9 +1,8 @@
 import random
-cards = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"] # Not needed.
+from art import logo
 
-player_deck = {
-    "A": 11,
-    # "ace": 1,
+player_deck = {     # Dictionary to hold the values of the cards.
+    "A": 11, # 'A' has 11 or 1 value.
     "two": 2,
     "three": 3,
     "four": 4,
@@ -18,9 +17,8 @@ player_deck = {
     "K": 10,
 }
 
-dealer_deck = {
-        "A": 11,
-    # "ace": 1,
+dealer_deck = {     # Dictionary to hold the values of the cards.
+    "A": 11, # 'A' has 11 or 1 value.
     "two": 2,
     "three": 3,
     "four": 4,
@@ -35,7 +33,7 @@ dealer_deck = {
     "K": 10,
 }
 
-def shuffle_deck(player):
+def shuffle_deck(player):   # Function to shuffle the deck of cards both for the player and the dealer part.
     simulator = []
     if player == "dealer":
         for card in dealer_deck.keys():
@@ -51,14 +49,14 @@ def shuffle_deck(player):
         random.shuffle(simulator)
         return simulator
 
-def dealer_part():
+def dealer_part():  # Function to randomly select cards from the dealer dictionary.
     dealer = []   #names
 
     for count_dealer in range(2):
         random_card_dealer = random.choice(shuffle_deck("dealer"))
         dealer.append(random_card_dealer)
 
-
+    # Loop to check the dealer's cards and add more cards if necessary.
     while True:
         if sum(dealer_deck[count] for count in dealer) < 13:
             for count in range(1):
@@ -96,7 +94,7 @@ def dealer_part():
     
     return dealer
 
-
+# Main Program operation of the game.
 def display_game():
     player_cards = []
     dealer_cards = dealer_part().copy()  # Copying the dealer's cards to use it later.
@@ -105,22 +103,10 @@ def display_game():
         random_card_player = random.choice(shuffle_deck("player"))
         player_cards.append(random_card_player)
 
-    def player_part():
+    def player_part():      # Randomly select 1 card from the deck when the player chooses 'y'(hit) to draw another card.
         for count in range(1):
             random_card_player = random.choice(shuffle_deck("player"))
             player_cards.append(random_card_player)
-        
-        # hitted_player_cards = player_cards.copy()
-
-        # sum_player_cards = 0 # sum of the player's cards.
-
-        # for key, value in simulation.items():
-        #     for count in hitted_player_cards:
-        #         if key == count:
-        #             sum_player_cards += simulation[key]
-        # sum_player_cards = sum(simulation[key] for key in hitted_player_cards)
-
-        # return sum_player_cards
 
     def final_dealer():
         final_cards = dealer_cards    # values
@@ -163,8 +149,6 @@ def display_game():
                 print(" " * 5, f"Your Cards: [{player_card_holder}], final score: {current_score}")
                 print(" " * 5, f"Dealer's first Card: [{dealer_card_holder}], final score: {final_dealer()}")
                 print(" " * 10, "---Status: You went over.")
-                # print(" " * 10, "---Game: You went over. You lose 😭")  # OR
-                # print(" " * 10, "---Game: You won:). Due to the dealer wen over.\n")
                 
                 def game_status():
                     if final_dealer() < 21:
@@ -182,10 +166,9 @@ def display_game():
             elif current_score == 21:
                 print(" " * 5, f"Your Cards: [{player_card_holder}], final score: {current_score}")
                 print(" " * 5, f"Dealer's first Card: [{dealer_card_holder}], final score: {final_dealer()}")
-                print(" " * 10, "---Status: You hit a Blackjack 😎")
-                # print(" " * 10, "---Game: __You Win!__ | __It's a Draw!__\n")     #When the dealer also has 21(hit the Blackjack).
+                print(" " * 10, "---Status: You hit a Blackjack 😎")   
 
-                def blackjack_status():
+                def blackjack_status():     #When the dealer also has 21(hit the Blackjack).
                     if final_dealer() < 21:
                         return print(" " * 10, "---Game: You Win:)")
                     
@@ -257,43 +240,47 @@ def display_game():
 
             print()
             player_part()
-            # if message_output(player_part()):
-            #     break
             continue
 
         else:
             print()
             print("Invalid input! Please enter 'y' or 'n'.")
 
-while True:
-    play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
-    if play == "n":
-        print("Goodbye!")
-        break
+# Main function to start the game.
+def main():
+    while True:
+        play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
+        if play == "n":
+            print("Goodbye!")
+            break
 
-    elif play == "y":
-        print("\n" * 30, "----Welcome to the Blackjack Game!----")
-        print()
-        demo = input("Do you want to see a quick demo before playing? Type 'y' or 'n' to play: ").lower()
-        if demo == "y":
-            print("\nIn this game, you will be dealt two cards. You can choose to hit (draw another card) or stand (keep your current hand).")
-            print("The goal is to get as close to 21 as possible without going over.")
-            print("If you go over 21, you lose. If you get exactly 21, you win!")
-            print("You can also choose to play with a dealer who will also be dealt two cards.")
-            print("Good luck!")
+        elif play == "y":
+            print("\n" * 30, "----Welcome to")
+            print(logo, "\n    Game----")
             print()
+            demo = input("Do you want to see a quick demo before playing? Type 'y' or 'n' to play: ").lower()
+            if demo == "y":
+                print("\nIn this game, you will be dealt two cards. You can choose to hit (draw another card) or stand (keep your current hand).")
+                print("The goal is to get as close to 21 as possible without going over.")
+                print("If you go over 21, you lose. If you get exactly 21, you win!")
+                print("You can also choose to play with a dealer who will also be dealt two cards.")
+                print("Good luck!")
+                print()
 
-            if input("press 'Enter' to continue: ") == "":
+                if input("press 'Enter' to continue: ") == "":
+                    print()
+                    display_game()
+
+            elif demo == "n":
                 print()
                 display_game()
 
-        elif demo == "n":
-            print()
-            display_game()
+            else:
+                print("Wrong Input! Please enter 'y' or 'n'.")
 
         else:
             print("Wrong Input! Please enter 'y' or 'n'.")
 
-    else:
-        print("Wrong Input! Please enter 'y' or 'n'.")
+if __name__ == "__main__":
+    main()
         
