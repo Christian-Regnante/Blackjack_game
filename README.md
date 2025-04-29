@@ -54,14 +54,14 @@ Welcome to the **Blackjack Game**! This project is a Python-based implementation
 ```
 ----Welcome to the Blackjack Game!----
 
-Your Cards: [A, 7], current score: 18
+Your Cards: [A, seven], current score: 18
 Dealer's first Card: [K, ?]
 ---Status: You are still in the game.
 
 Type 'y' to hit(get another card), type 'n' to stand(pass): y
 
-Your Cards: [A, 7, 3], current score: 21
-Dealer's first Card: [K, ?]
+Your Cards: [A, seven, three], final score: 21
+Dealer's first Card: [K, J], final score: 20
 ---Status: You hit a Blackjack 😎
 ---Game: You Win:)
 ```
@@ -76,5 +76,3 @@ Dealer's first Card: [K, ?]
 - Add support for multiple players.
 - Implement betting and chip management.
 - Enhance the dealer's strategy for more challenging gameplay.
-
-Enjoy the game and good luck!
